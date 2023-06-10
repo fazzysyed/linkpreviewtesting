@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 3000;
 const indexPath = path.resolve(__dirname, "..", "build", "index.html");
 
 // static resources should just be served as they are
+
+app.use(express.json());
+app.use(cors());
 app.use(
   express.static(path.resolve(__dirname, "..", "build"), { maxAge: "30d" })
 );
