@@ -13,28 +13,28 @@ app.use(
 );
 
 // here we serve the index.html page
-app.get("/*", (req, res, next) => {
-  console.log("helllo");
-  fs.readFile(indexPath, "utf8", (err, htmlData) => {
-    if (err) {
-      console.error("Error during file reading", err);
-      return res.status(404).end();
-    }
-    // get post info
-    const postId = req.query.id;
-    const post = getPostById(postId);
-    if (!post) return res.status(404).send("Post not found");
+app.get("/articles", (req, res, next) => {
+  res.json({ data: "dataaaa" });
+  // fs.readFile(indexPath, "utf8", (err, htmlData) => {
+  //   if (err) {
+  //     console.error("Error during file reading", err);
+  //     return res.status(404).end();
+  //   }
+  //   // get post info
+  //   const postId = req.query.id;
+  //   const post = getPostById(postId);
+  //   if (!post) return res.status(404).send("Post not found");
 
-    // inject meta tags
-    htmlData = htmlData
-      .replace("<title>React App</title>", `<title>${post.title}</title>`)
-      .replace("__META_OG_TITLE__", post.title)
-      .replace("__META_OG_DESCRIPTION__", post.description)
-      .replace("__META_DESCRIPTION__", post.description)
-      .replace("__META_OG_IMAGE__", post.thumbnail);
+  //   // inject meta tags
+  //   htmlData = htmlData
+  //     .replace("<title>React App</title>", `<title>${post.title}</title>`)
+  //     .replace("__META_OG_TITLE__", post.title)
+  //     .replace("__META_OG_DESCRIPTION__", post.description)
+  //     .replace("__META_DESCRIPTION__", post.description)
+  //     .replace("__META_OG_IMAGE__", post.thumbnail);
 
-    return res.send(htmlData);
-  });
+  //   return res.send(htmlData);
+  // });
 });
 
 // listening...
